@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { 
+      width: 380px; 
+      padding: 0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #380560 0%, #380560 100%);
+      color: white;
+    }
+    
+    .header {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 3px solid #66cee9;
+    }
+    
+    .logo {
+      width: 80px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    
+    .header h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+      color: #380560;
+      letter-spacing: 0.5px;
+    }
+    
+    .content {
+      background: white;
+      color: #1f2937;
+      padding: 20px;
+    }
+    
+    .hidden { display: none; }
+    
+    input, textarea { 
+      width: 100%; 
+      margin: 8px 0; 
+      padding: 12px; 
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+    
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #66cee9;
+      box-shadow: 0 0 0 3px rgba(102, 206, 233, 0.1);
+    }
+    
+    button { 
+      background: linear-gradient(135deg, #66cee9 0%, #66cee9 100%);
+      color: white; 
+      padding: 12px; 
+      border: none; 
+      cursor: pointer; 
+      width: 100%;
+      border-radius: 8px;
+      margin: 8px 0;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    button:hover { 
+      background: linear-gradient(135deg, #5abfe5 0%, #5abfe5 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(102, 206, 233, 0.3);
+    }
+    
+    .logout-btn {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    }
+    
+    .logout-btn:hover {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    }
+    
+    .error { 
+      color: #ef4444; 
+      margin: 10px 0; 
+      font-size: 13px;
+      font-weight: 500;
+    }
+    
+    .output { 
+      background: #f8fafc; 
+      padding: 15px; 
+      border-radius: 8px; 
+      margin: 15px 0;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .welcome {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    h3 {
+      margin: 0 0 15px 0;
+      color: #1f2937;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    
+
+    
+    .google-signin-btn {
+      background: #ffffff;
+      color: #3c4043;
+      border: 1px solid #dadce0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .google-signin-btn:hover {
+      background: #f8f9fa;
+      border-color: #c8c9ca;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transform: translateY(-1px);
+    }
+    
+    .google-signin-btn img {
+      width: 18px;
+      height: 18px;
+    }
+    
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #e5e7eb;
+    }
+    
+    .ai-evaluate-btn {
+      background: linear-gradient(135deg, #380560 0%, #380560 100%);
+      margin: 4px 0;
+    }
+    
+    .ai-evaluate-btn:hover {
+      background: linear-gradient(135deg, #2d043f 0%, #2d043f 100%);
+    }
+    
+    .ai-evaluate-btn:disabled {
+      background: #d1d5db;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    
+    .usage-counter {
+      font-size: 12px;
+      color: #6b7280;
+      text-align: center;
+      margin: 5px 0;
+    }
+    
+    .evaluation-results {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+    }
+    
+    .evaluation-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+    
+    .evaluation-table th {
+      background: #f1f5f9;
+      padding: 8px;
+      text-align: left;
+      border-bottom: 2px solid #e2e8f0;
+      font-weight: 600;
+    }
+    
+    .evaluation-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+    
+    .score-cell {
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .score-1 { color: #dc2626; }
+    .score-2 { color: #ea580c; }
+    .score-3 { color: #ca8a04; }
+    .score-4 { color: #16a34a; }
+    
+    .overall-score {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      margin: 10px 0;
+    }
+    
+    .improved-note {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    
+
+    
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="assets/satt-logo.png" alt="Score At The Top" class="logo">
+    <h2>Session Notes</h2>
+  </div>
+  
+  <div class="content">
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h3>Tutor Login</h3>
+      <p style="margin: 10px 0; color: #6b7280; font-size: 14px; text-align: center;">
+        <strong>Score Academy staff only:</strong><br>
+        Sign in with your @score-academy.com Google account
+      </p>
+      <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 8px; margin: 10px 0; font-size: 12px; color: #1e40af;">
+        <strong>Tip:</strong> After signing in, the extension popup will close. Click the extension icon again to access your notes form.
+      </div>
+      <button id="googleSignInBtn" class="google-signin-btn">
+        Sign in with Google
+      </button>
+      <div id="loginError" class="error"></div>
+    </div>
+    
+    <!-- Notes Form -->
+    <div id="notesForm" class="hidden">
+      <div class="user-profile">
+        <img id="userAvatar" src="" alt="User Avatar" class="user-avatar" style="display: none;">
+        <div>
+          <div class="welcome">
+            Welcome back, <span id="userName"></span>!
+          </div>
+          <div style="font-size: 12px; color: #6b7280;">
+            <span id="userEmail"></span>
+          </div>
+        </div>
+      </div>
+      
+      <h3>Session Report</h3>
+      <input type="text" id="studentName" placeholder="Student Name" required>
+      <input type="text" id="subject" placeholder="Subject/Course" required>
+      <textarea id="rawNotes" placeholder="Enter detailed session notes..." rows="5" required></textarea>
+      
+      <div class="usage-counter">
+        <span id="usageCounter">0/50 AI evaluations used today</span>
+      </div>
+      
+      <button id="aiEvaluateBtn" class="ai-evaluate-btn">
+        <span id="evaluateText">AI Evaluate/Improve</span>
+      </button>
+      
+      <div id="aiEvaluationResults" class="evaluation-results hidden">
+        <h4>AI Evaluation Results</h4>
+        
+        <div class="overall-score">
+          <div>Overall Score: <span id="overallScore">0.0</span>/4.0</div>
+        </div>
+        
+        <h5>Detailed Evaluation:</h5>
+        <table class="evaluation-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Score</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody id="evaluationTableBody">
+          </tbody>
+        </table>
+        
+        <h5>Improved Version:</h5>
+        <div class="improved-note" id="improvedNote"></div>
+      </div>
+      
+      <button id="logoutBtn" class="logout-btn">Sign Out</button>
+    </div>
+  </div>
+  
+  <script src="ai-evaluation.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html> 

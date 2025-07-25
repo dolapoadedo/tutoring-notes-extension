@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Score At The Top - Session Notes",
+  "version": "2.0",
+  "description": "Format tutoring session notes for Score At The Top Learning Centers",
+  "permissions": [
+    "identity",
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://api.openai.com/*"
+  ],
+  "oauth2": {
+    "client_id": "836057961935-uf3r5v0rp30hsnjgjs74k5m5fe9i59df.apps.googleusercontent.com",
+    "scopes": [
+      "openid",
+      "email",
+      "profile"
+    ]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Session Notes",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  }
+} 
